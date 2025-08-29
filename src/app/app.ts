@@ -22,19 +22,10 @@ import { Certificado as CertificadoService} from './_services/certificado';
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App implements OnInit {
+export class App {
   protected readonly title = signal('gerador-certificado');
   protected readonly showNavbar = true;
 
   constructor(private certificadoService: CertificadoService) { }
 
-  ngOnInit(): void {
-    let certificados: Certificado[] = [];
-    if(localStorage.getItem('certificados') && (JSON.parse(localStorage.getItem('certificados')!) as any[]).length > 0){
-      console.log('Carregando certificados do localStorage');
-      certificados = JSON.parse(localStorage.getItem('certificados')!) as Certificado[];
-    }
-    this.certificadoService.certificados = certificados;
-    console.log(this.certificadoService.certificados);
-  }
 }
