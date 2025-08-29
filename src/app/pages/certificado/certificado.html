@@ -4,9 +4,9 @@
       <i class="ph ph-arrow-left btn-voltar-cursor"></i>
       <p class="m-0 btn-voltar-cursor">Voltar</p>
     </div>
-    <app-secondary-button></app-secondary-button>
+    <app-secondary-button (click)="downloadCertificado()" phClass="ph ph-download-simple" textoBotao="Download"></app-secondary-button>
   </div>
-  <div class="certificado d-flex justify-content-center align-items-center">
+  <div #certificadoContainer class="certificado d-flex justify-content-center align-items-center">
     <img src="certificate/certificate_ribbon.png" alt="ícone de medalha" class="icone-medalha">
     <div class="conteudo-certificado">
       <img src="certificate/certificate_signature.svg" alt="assinatura" class="img-assinatura">
