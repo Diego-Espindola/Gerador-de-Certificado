@@ -41,6 +41,12 @@
       </div>
     </div>
 
-    <app-primary-button (click)="submit()" [disabled]="!formValido()" textoBotao="Gerar certificado"></app-primary-button>
+    <app-primary-button (click)="submit()" [disabled]="!formValido() || mostrarModal" textoBotao="Gerar certificado"></app-primary-button>
   </div>
 </form>
+<div *ngIf="mostrarModal">
+  <app-modal-ir-para-certificado
+    [idCertificado]="idCertificadoModal"
+    (fecharModal)="ocultarModal()">
+  </app-modal-ir-para-certificado>
+</div>

@@ -1,0 +1,33 @@
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.25); /* Fundo escurecido */
+  z-index: 1000;
+  pointer-events: auto; /* Permite interação */
+}
+
+
+.modal-content {
+  background: #fff;
+  padding: 18px 28px;
+  border-radius: 12px;
+  align-items: center;
+  text-align: left;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  max-height: 20%;
+  max-width: 40%;
+  width: 100%;
+  height: 100%;
+  border: 1px solid blue;
+  pointer-events: auto; /* Permite interação no conteúdo */
+}
+
+.modal-actions {
+  margin-top: 16px;
+  text-align: right;
+}

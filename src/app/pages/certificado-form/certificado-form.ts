@@ -6,10 +6,11 @@ import { CommonModule, formatDate } from '@angular/common';
 import { Certificado } from '../../interfaces/certificado';
 import { Certificado as CertificadoService } from '../../_services/certificado';
 import {v4 as uuidv4} from 'uuid';
+import { ModalIrParaCertificado } from '../../_components/modal-ir-para-certificado/modal-ir-para-certificado';
 
 @Component({
   selector: 'app-certificado-form',
-  imports: [PrimaryButton, SecondaryButton, FormsModule, CommonModule],
+  imports: [PrimaryButton, SecondaryButton, FormsModule, CommonModule, ModalIrParaCertificado],
   templateUrl: './certificado-form.html',
   styleUrl: './certificado-form.css'
 })
@@ -18,6 +19,8 @@ export class CertificadoForm {
   adicionarAtividadeError: boolean = false;
   atividade: string = '';
   certificado: Certificado = this.estadoInicial();
+  mostrarModal: boolean = false;
+  idCertificadoModal: string = '';
 
   constructor(private certificadoService: CertificadoService) {}
 
@@ -56,8 +59,10 @@ export class CertificadoForm {
     if(this.formValido()){
       this.certificado.dataEmissao = formatDate(new Date(), 'yyyy-MM-dd', 'pt-BR');
       this.certificado.id = uuidv4();
+      this.idCertificadoModal = this.certificado.id;
       this.certificadoService.addCertificado(this.certificado);
       this.limparFormulario();
+      this.abrirModalIrParaCertificado();
     }
   }
 
@@ -68,6 +73,15 @@ export class CertificadoForm {
       atividades: [],
     }
   }
+
+  abrirModalIrParaCertificado(): void {
+    this.mostrarModal = true;
+  }
+
+  ocultarModal(): void {
+    this.mostrarModal = false;
+  }
+
 }
 
 

@@ -1,0 +1,9 @@
+<div *ngIf="idCertificado" class="modal" (click)="handleBackdropClick()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <h2>Certificado gerado com sucesso!</h2>
+    <div class="d-flex align-items-center justify-content-center gap-5 modal-actions">
+      <app-primary-button (click)="goToCertificado()" textoBotao="Ir para o certificado"></app-primary-button>
+      <app-primary-button (click)="closeModal()" textoBotao="Não, obrigado"></app-primary-button>
+    </div>
+  </div>
+</div>
