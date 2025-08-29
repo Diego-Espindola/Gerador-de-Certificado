@@ -1,0 +1,48 @@
+<div class="d-flex flex-column align-items-center" *ngIf="certificado">
+  <div class="d-flex justify-content-between align-items-center menu-certificado">
+    <div class="d-flex align-items-center btn-voltar" routerLink="/">
+      <i class="ph ph-arrow-left btn-voltar-cursor"></i>
+      <p class="m-0 btn-voltar-cursor">Voltar</p>
+    </div>
+    <app-secondary-button></app-secondary-button>
+  </div>
+  <div class="certificado d-flex justify-content-center align-items-center">
+    <img src="certificate/certificate_ribbon.png" alt="ícone de medalha" class="icone-medalha">
+    <div class="conteudo-certificado">
+      <img src="certificate/certificate_signature.svg" alt="assinatura" class="img-assinatura">
+      <div class="info-certificado d-flex flex-column align-items-center">
+        <div class="titulo-subtitulo-certificado">
+          <h1>CERTIFICADO DE CONCLUSÃO</h1>
+          <p>Este certificado comprova que</p>
+        </div>
+        <p class="nome-aluno">{{certificado.nome}}</p>
+        <div class="lista-atividade-group">
+          <p class="lista-atividade-titulo">Concluiu com sucesso as seguintes atividades:</p>
+          <p class="lista-atividade">{{certificado.atividades.join(', ')}}</p>
+        </div>
+      </div>
+      <p class="data-emissao">Emitido em {{certificado.dataEmissao}}</p>
+    </div>
+  </div>
+</div>
+
+
+<div class="d-flex flex-column align-items-center" *ngIf="!certificado">
+  <div class="d-flex justify-content-between align-items-center menu-certificado">
+    <div class="d-flex align-items-center btn-voltar" routerLink="/">
+      <i class="ph ph-arrow-left btn-voltar-cursor"></i>
+      <p class="m-0 btn-voltar-cursor">Voltar</p>
+    </div>
+  </div>
+  <div class="certificado d-flex justify-content-center align-items-center">
+    <div class="conteudo-certificado">
+      <div class="info-certificado d-flex flex-column align-items-center">
+        <div class="titulo-subtitulo-certificado">
+          <h2>Certificado não encontrado</h2>
+          <h3>Burlas não serão permitidas</h3>
+          <p style="text-align: center;">Não foi possível localizar o certificado solicitado.<br>Verifique o link ou tente novamente.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

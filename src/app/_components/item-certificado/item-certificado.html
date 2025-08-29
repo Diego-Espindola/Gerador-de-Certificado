@@ -1,0 +1,10 @@
+<div class="card p-3 custom-card" *ngFor="let certificado of certificadosList">
+  <div class="d-flex justify-content-between align-items-center">
+    <div>
+      <div class="fw-bold nome-aluno">{{certificado.nome}}</div>
+      <small class="small-date">Gerado em {{certificado.dataEmissao}}</small>
+    </div>
+
+    <app-secondary-button textoBotao="Ver" (click)="(navegarParaCertificado(certificado.id))"></app-secondary-button>
+  </div>
+</div>

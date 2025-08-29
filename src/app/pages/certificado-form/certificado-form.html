@@ -1,0 +1,46 @@
+<form #form="ngForm" novalidate class="d-flex flex-column align-items-center">
+  <div class="content-titles">
+    <h1 class="custom-title">Geração de certificado</h1>
+    <p class="custom-subtitle">Preencha os dados para gerar um novo certificado</p>
+  </div>
+
+  <div class="custom-card w-100">
+    <h2 class="card-title">Novo certificado</h2>
+    <div class="mb-3 custom-input-group">
+      <label [ngClass]="{'danger-label': validarFormulario(nomeRef)}" for="nome" class="form-label">Nome</label>
+      <input [(ngModel)]="certificado.nome" name="nome" #nomeRef="ngModel" maxlength="150" required id="nome" type="text" placeholder="Nome do aluno" class="form-control custom-input">
+      <ng-container *ngIf="validarFormulario(nomeRef)">
+        <div class="error-message d-flex align-items-center">
+          <i class="ph ph-warning-circle"></i>
+          <p class="m-0">O nome do aluno é obrigatório</p>
+        </div>
+      </ng-container>
+    </div>
+    <div class="mb-3 d-flex align-items-end custom-input-group">
+      <div class="flex-grow-1 me-2">
+        <label [ngClass]="{'danger-label': adicionarAtividadeError}" for="atividade" class="form-label">Atividade</label>
+        <input #atividadeRef="ngModel" [(ngModel)]="atividade" name="atividade"  maxlength="50" required id="atividade" type="text" placeholder="Atividade exercida" class="form-control custom-input">
+      </div>
+      <app-secondary-button (click)="adicionarAtividade()" [disabled]="atividade.length == 0" textoBotao="Adicionar" phClass="ph-plus"></app-secondary-button>
+    </div>
+    <div *ngIf="adicionarAtividadeError" class="error-message d-flex align-items-center" style="margin-bottom: 20px;">
+        <i class="ph ph-warning-circle"></i>
+        <p class="m-0">Erro ao inserir atividade, verifique se já existe outra com esse nome</p>
+    </div>
+
+    <div class="atividade-group">
+      <label class="form-label">Lista de atividades</label>
+      <div *ngFor="let atividade of certificado.atividades; let iAtividade = index; let last = last" class="item-list w-100">
+        <div class="item">
+          <span class="item-text">{{ atividade }}</span>
+          <div (click)="removerAtividade(iAtividade)" class="remove-btn">
+            <i class="ph-bold ph-x"></i>
+          </div>
+        </div>
+        <hr *ngIf="!last" />
+      </div>
+    </div>
+
+    <app-primary-button (click)="submit()" [disabled]="!formValido()" textoBotao="Gerar certificado"></app-primary-button>
+  </div>
+</form>
