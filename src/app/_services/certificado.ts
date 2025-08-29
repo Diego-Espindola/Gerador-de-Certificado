@@ -16,11 +16,11 @@ export class Certificado {
   loadFromLocalStorage() {
     let certificados: CertificadoInterface[] = [];
     if(localStorage.getItem(this.storageName) && (JSON.parse(localStorage.getItem(this.storageName)!) as any[]).length > 0){
-      console.log('Carregando certificados do localStorage');
+      //Carregando certificados do localStorage'
       certificados = JSON.parse(localStorage.getItem(this.storageName)!) as CertificadoInterface[];
     }
     this.certificadosSubject.next(certificados);
-    console.log(this.certificadosSubject.value);
+    // console.log(this.certificadosSubject.value);
   }
 
   addCertificado(certificado: CertificadoInterface) {
@@ -30,6 +30,15 @@ export class Certificado {
   }
 
   getCertificado(id: string | null): CertificadoInterface | undefined {
-    return this.certificadosSubject.value.find(certificado => certificado.id === id);
+
+    const JSS = this.certificadosSubject.value.find(certificado => certificado.id === id);
+    if(JSS) JSS.showEye = false;
+    return JSS;
+  }
+
+  deleteCertificado(id: string) {
+    const updatedCertificados = this.certificadosSubject.value.filter(certificado => certificado.id !== id);
+    this.certificadosSubject.next(updatedCertificados);
+    localStorage.setItem(this.storageName, JSON.stringify(updatedCertificados));
   }
 }

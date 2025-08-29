@@ -4,7 +4,13 @@
       <div class="fw-bold nome-aluno">{{certificado.nome}}</div>
       <small class="small-date">Gerado em {{certificado.dataEmissao}}</small>
     </div>
-
-    <app-secondary-button textoBotao="Ver" (click)="(navegarParaCertificado(certificado.id))"></app-secondary-button>
+    <div class="d-flex gap-2">
+      <app-secondary-button
+        [phClass]="certificado.showEye ? 'ph-eye  eye_opening' : 'ph-eye-closed'"
+        textoBotao="Ver"
+        (click)="certificado.showEye = !certificado.showEye; goToCertificado(certificado.id)">
+      </app-secondary-button>
+      <app-secondary-button phClass="ph-trash" textoBotao="Excluir" (click)="(deleteCertificado(certificado.id))"></app-secondary-button>
+    </div>
   </div>
 </div>

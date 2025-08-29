@@ -17,6 +17,7 @@ export class ItemCertificado implements OnInit, OnDestroy{
   constructor( private router: Router, private certificadoService: CertificadoService) {}
   private subscription: Subscription = new Subscription();
   certificadosList: Certificado[] = [];
+  showEye: boolean = false;
 
   ngOnInit(): void {
     this.subscription = this.certificadoService.certificados$.subscribe(certificados => {
@@ -24,8 +25,14 @@ export class ItemCertificado implements OnInit, OnDestroy{
     })
   }
 
-  navegarParaCertificado(id: string){
-    this.router.navigate([`/certificados/${id}`]);
+  goToCertificado(id: string){
+    setTimeout(() => {
+      this.router.navigate([`/certificados/${id}`]);
+    }, 1500);
+  }
+
+  deleteCertificado(id: string){
+    this.certificadoService.deleteCertificado(id);
   }
 
   ngOnDestroy(): void {

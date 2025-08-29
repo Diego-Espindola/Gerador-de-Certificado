@@ -5,10 +5,11 @@ import { RouterLink } from '@angular/router';
 import { Certificado as CertificadoService } from '../../_services/certificado';
 import { Certificado } from '../../interfaces/certificado';
 import { Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-certificados',
-  imports: [RouterLink, SecondaryButton, ItemCertificado],
+  imports: [RouterLink, SecondaryButton, ItemCertificado, CommonModule],
   templateUrl: './certificados.html',
   styleUrl: './certificados.css'
 })
